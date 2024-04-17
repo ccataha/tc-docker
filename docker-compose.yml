@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  tc-docker:
+    build: .
+    container_name: tc-docker
+    cap_add:
+      - NET_ADMIN
+    network_mode: host
+    privileged: true  
+    environment:
+      - NETWORK_INTERFACE=ens3
+      - RATE=10Kbps
+      - NETWORKS=8.8.8.8,1.1.1.1
+    entrypoint: ["/entrypoint.sh"]
